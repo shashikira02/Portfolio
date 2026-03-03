@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
+import BackgroundParticles from '@/components/layout/BackgroundParticles';
+import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Shashi Kiran | Portfolio',
@@ -14,9 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className='relative'>
+        <BackgroundParticles />
         <Navbar />
         <main className="pt-24">{children}</main>
+        <Footer />
+
       </body>
     </html>
   );
