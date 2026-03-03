@@ -14,7 +14,7 @@ const BackgroundParticles = () => {
         moveParticlesOnHover={false}
         alphaParticles={false}
         disableRotation={false}
-        pixelRatio={Math.min(window.devicePixelRatio, 1.5)}
+        pixelRatio={typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 1.5) : 1} 
         className=""
       />
     </div>
