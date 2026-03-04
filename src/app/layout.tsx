@@ -16,13 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className='relative overflow-x-hidden '>
+      <body className='relative overflow-x-hidden ' >
         <BackgroundParticles />
         <Navbar />
-        <main className="pt-24">{children}</main>
+        <main className="w-[90%] md:w-[70%] lg:w-[60%] mx-auto pt-24">{children}</main>
         <Footer />
 
       </body>
     </html>
   );
 }
+
