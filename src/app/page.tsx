@@ -8,14 +8,16 @@ const Home = () => {
   return (
     <main className='min-h-screen px-4 pb-20' >
       <Hero />
-      <AboutSection/>
-      <JourneySection/>
-
-
-      <SkillsSection
-        skills={['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js']}
-      />
-      <CertificationsSection/>
+      <section className='py-14 px-6' >
+        <div className='max-w-5xl mx-auto' >
+          <AboutSection />
+          <SkillsSection
+            skills={['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js']}
+          />
+          <CertificationsSection />
+          <JourneySection />
+        </div>
+      </section>
     </main>
   );
 };
