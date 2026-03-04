@@ -2,9 +2,7 @@ import AboutSection from '@/components/home/AboutSection';
 import CertificationsSection from '@/components/home/CertificationsSection';
 import Hero from '@/components/home/Hero';
 import JourneySection from '@/components/home/JourneySection';
-import ProfileCard from '@/components/home/ProfileCard';
 import SkillsSection from '@/components/home/SkillsSection';
-import SocialLinks from '@/components/home/SocialLinks';
 
 const Home = () => {
   return (
