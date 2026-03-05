@@ -3,7 +3,7 @@ type skillsProps = {
 };
 
 const SkillsSection = ({ skills }: skillsProps) => {
-  return <section className="max-w-4xl mx-auto mt-16 px-6 text-center" >
+  return <section className="max-w-4xl mx-auto mt-16 text-center" >
     <h3 className="text-2xl font-semibold mb-6" >Technical Skills</h3>
     <div className="flex flex-wrap justify-center gap-4" >
       {skills.map(skill=>(

@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      <nav className="mx-auto flex max-w7xl items-center justify-between px-6 py-4 backdrop-blur-md bg-white/5 border-b border-white/5">
+      <nav className="mx-auto flex w-full items-center justify-between px-6 py-4 backdrop-blur-md bg-white/5 border-b border-white/5">
         <Link href="/" className="text-lg font-semibold tracking-wide">
           Shashi Kiran
         </Link>

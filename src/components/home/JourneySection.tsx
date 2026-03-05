@@ -1,6 +1,6 @@
 const JourneySection = () => {
     return (
-        <section className='max-w-4xl mx-auto mt-24 px-6 space-y-6' >
+        <section className='max-w-4xl mx-auto mt-24 space-y-6' >
             <h2 className='text-3xl font-bold'>
                 My Journey
             </h2>

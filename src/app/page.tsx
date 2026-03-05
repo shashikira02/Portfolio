@@ -6,10 +6,10 @@ import SkillsSection from '@/components/home/SkillsSection';
 
 const Home = () => {
   return (
-    <main className='min-h-screen px-4 pb-20' >
+    <main className='min-h-screen pb-20' >
       <Hero />
-      <section className='py-14 px-6' >
-        <div className='max-w-5xl mx-auto' >
+      <section >
+        <div className='w-full' >
           <AboutSection />
           <SkillsSection
             skills={['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js']}

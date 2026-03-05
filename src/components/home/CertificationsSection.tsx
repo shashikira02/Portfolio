@@ -1,9 +1,8 @@
 import { certifications } from '@/lib/certifications.data'
-import React from 'react'
 
 const CertificationsSection = () => {
     return (
-        <section className='max-w-5xl mx-auto mt-24 px-6 space-y-10'>
+        <section className='max-w-5xl mx-auto mt-24 space-y-10'>
             <h2>Certifications</h2>
             <div className='grid md:grid-cols-2 gap-8' >
                 {certifications.map(cert => (
