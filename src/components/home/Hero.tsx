@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const Hero = () => {
   return (
-    <section className="min-h-[80vh] flex items-center" >
+    <section id='hero' className="min-h-[80vh] flex items-center" >
       <div className="grid md:grid-cols-2 gap-10 items-center w-full">
 
         {/* Left - About/Information */}
@@ -16,14 +16,14 @@ const Hero = () => {
             Shashi Kiran
           </h1>
           <p className="text-neutral-400 text-lg max-w-xl" >
-            Full-Stack Developer focused on building scalable, perfomant web application with modern technologies.
+            Full-Stack Developer focused on building scalable, performant web application with modern technologies.
           </p>
           <div className="flex gap-4 pt-4 justify-center md:justify-start" >
-            <a href="/projects" className="px-6 py-3 bg-white text-black rounded-lg font-medium hover:opacity-90 transition" >
+            <a href="#projects" className="px-6 py-3 bg-white text-black rounded-lg font-medium hover:opacity-90 transition" >
               View Projects
             </a>
 
-            <a href="/contact" className="px-6 py-3 border border-white/20 rounded-lg font-medium hover:bg-white/10 transition" >
+            <a href="#contact" className="px-6 py-3 border border-white/20 rounded-lg font-medium hover:bg-white/10 transition" >
               Get In Touch
             </a>
           </div>

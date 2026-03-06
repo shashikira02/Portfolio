@@ -1,41 +1,64 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 const ContactInfo = () => {
   return (
-    <div className='space-y-10' >
-      <div >
-        <h2 className='text-xl font-semibold mb-4' >Direct Contact</h2>
-        <div className='space-y-4'>
-          <Link href="#" className='block p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:opacity-80 transition' >
-            <div className='flex items-center gap-3' >
-              <Linkedin size={20} />
-              <span>Connect on LinkedIn</span>
+    <div className='space-y-6 md:space-y-8' >
+      <div className='space-y-4 md:space-y-6'>
+        <div>
+          <h2 className='text-xl md:text-2xl font-bold mb-2'>Let's Connect</h2>
+          <p className='text-sm md:text-base text-neutral-400'>Feel free to reach out through any of these channels</p>
+        </div>
+
+        <div className='space-y-3 md:space-y-4'>
+          <Link 
+            href="mailto:shashikira4124@gmail.com" 
+            className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
+          >
+            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition flex-shrink-0'>
+              <Mail size={18} className='md:w-5 md:h-5' />
+            </div>
+            <div className='min-w-0'>
+              <p className='text-xs md:text-sm text-neutral-400'>Email</p>
+              <p className='font-medium text-sm md:text-base truncate'>shashikira4124@gmail.com</p>
             </div>
           </Link>
 
-          <Link href="mailto:shashikira4124@gmail.com" className='block p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:opacity-80 transition' >
-            <div className="flex items-center gap-3">
-              <Mail size={20} />
-              <span>Send an Email</span>
+          <Link 
+            href="#" 
+            className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
+          >
+            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition flex-shrink-0'>
+              <Linkedin size={18} className='md:w-5 md:h-5' />
+            </div>
+            <div>
+              <p className='text-xs md:text-sm text-neutral-400'>LinkedIn</p>
+              <p className='font-medium text-sm md:text-base'>Connect with me</p>
+            </div>
+          </Link>
+
+          <Link 
+            href="#" 
+            className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
+          >
+            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition flex-shrink-0'>
+              <Github size={18} className='md:w-5 md:h-5' />
+            </div>
+            <div>
+              <p className='text-xs md:text-sm text-neutral-400'>GitHub</p>
+              <p className='font-medium text-sm md:text-base'>Check out my code</p>
             </div>
           </Link>
         </div>
       </div>
 
-      {/* Networking */}
-      <div>
-        <h2 className='text-xl font-semibold mb-4'>Networking</h2>
-        <div className='flex items-center gap-6'>
-          <Link href="#" aria-label="GitHub" className='flex items-center gap-2 hover:text-white/70 transition'>
-            <Github size={20} />
-            <span>GitHub</span>
-          </Link>
-
-          <Link href="#" aria-label="LinkedIn" className='flex items-center gap-2 hover:text-white/70 transition'>
-            <Linkedin size={20} />
-            <span>LinkedIn</span>
-          </Link>
+      <div className='p-4 md:p-6 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md'>
+        <div className='flex items-start gap-3'>
+          <MapPin size={18} className='mt-1 text-neutral-400 flex-shrink-0 md:w-5 md:h-5' />
+          <div>
+            <p className='font-medium mb-1 text-sm md:text-base'>Location</p>
+            <p className='text-xs md:text-sm text-neutral-400'>Available for remote opportunities worldwide</p>
+          </div>
         </div>
       </div>
     </div>

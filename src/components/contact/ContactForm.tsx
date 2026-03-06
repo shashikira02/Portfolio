@@ -26,18 +26,18 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <div>
-        <h2 className="text-2xl font-bold mb-2">Get in Touch</h2>
-        <p className="text-neutral-400 text-sm">Fill out the form below and I&apos;ll get back to you as soon as possible.</p>
+        <h2 className="text-xl md:text-2xl font-bold mb-2">Send a Message</h2>
+        <p className="text-neutral-400 text-xs md:text-sm">Fill out the form below and I&apos;ll get back to you as soon as possible.</p>
       </div>
       
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg"
+        className="space-y-4 md:space-y-6 p-4 sm:p-6 md:p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg"
       >
         <div>
-          <label htmlFor="name" className="block mb-2 text-sm font-medium">
+          <label htmlFor="name" className="block mb-2 text-xs md:text-sm font-medium">
             Name
           </label>
           <input
@@ -46,12 +46,12 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block mb-2 text-sm font-medium">
+          <label htmlFor="email" className="block mb-2 text-xs md:text-sm font-medium">
             Email{' '}
           </label>
           <input
@@ -60,12 +60,12 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition"
           />
         </div>
 
         <div>
-          <label htmlFor="message" className="block mb-2 text-sm font-medium">
+          <label htmlFor="message" className="block mb-2 text-xs md:text-sm font-medium">
             Message
           </label>
           <textarea
@@ -74,13 +74,13 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition resize-none"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition resize-none"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full py-3 rounded-lg bg-white text-black font-semibold hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg"
+          className="w-full py-2.5 md:py-3 text-sm md:text-base rounded-lg bg-white text-black font-semibold hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg"
         >
           Send Message
         </button>
