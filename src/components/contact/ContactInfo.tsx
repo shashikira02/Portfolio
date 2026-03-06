@@ -10,7 +10,7 @@ const ContactInfo = () => {
           <p className='text-sm md:text-base text-neutral-400'>Feel free to reach out through any of these channels</p>
         </div>
 
-        <div className='space-y-3 md:space-y-4'>
+        <div className='space-y-3 md:space-y-4 mt-10'>
           <Link 
             href="mailto:shashikira4124@gmail.com" 
             className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
