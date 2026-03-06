@@ -9,20 +9,55 @@ const ContactForm = () => {
     message: '',
   });
 
+  const [loading, setLoading] = useState
+    (false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormData((prev) => ({
-      ...prev,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
-    }));
+    });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Form Submitted', formData);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // console.log('Form Submitted', formData);
 
-    alert('Form submitted Successdully!');
+    // alert('Form submitted Successdully!');
+    e.preventDefault();
+
+    setLoading(true);
+    setStatus('idle');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (!res.ok) {
+        throw new Error();
+      }
+
+      setStatus('success');
+
+      setFormData({
+        name: "",
+        email:"",
+        message:""
+      })
+
+    } catch {
+      setStatus("error");
+    }
+
+    setLoading(false);
+
   };
 
   return (
@@ -31,7 +66,7 @@ const ContactForm = () => {
         <h2 className="text-xl md:text-2xl font-bold mb-2">Send a Message</h2>
         <p className="text-neutral-400 text-xs md:text-sm">Fill out the form below and I&apos;ll get back to you as soon as possible.</p>
       </div>
-      
+
       <form
         onSubmit={handleSubmit}
         className="space-y-4 md:space-y-6 p-4 sm:p-6 md:p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg"
@@ -70,7 +105,7 @@ const ContactForm = () => {
           </label>
           <textarea
             name="message"
-            rows={5}
+            rows={4}
             value={formData.message}
             onChange={handleChange}
             required
@@ -80,10 +115,24 @@ const ContactForm = () => {
 
         <button
           type="submit"
+          disabled={loading}
           className="w-full py-2.5 md:py-3 text-sm md:text-base rounded-lg bg-white text-black font-semibold hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg"
         >
-          Send Message
+          {loading? "Sending...":"Send Message"}
         </button>
+
+        {status === "success" && (
+          <p className='text-green-500'>
+            Message sent successfully
+          </p>
+        )}
+
+
+         {status === "error" && (
+          <p className='text-red-500'>
+            Something went wrong. Try again.
+          </p>
+        )}
       </form>
     </div>
   );

@@ -6,7 +6,7 @@ const ContactInfo = () => {
     <div className='space-y-6 md:space-y-8' >
       <div className='space-y-4 md:space-y-6'>
         <div>
-          <h2 className='text-xl md:text-2xl font-bold mb-2'>Let's Connect</h2>
+          <h2 className='text-xl md:text-2xl font-bold mb-2'>Let&apos;s Connect</h2>
           <p className='text-sm md:text-base text-neutral-400'>Feel free to reach out through any of these channels</p>
         </div>
 
@@ -15,7 +15,7 @@ const ContactInfo = () => {
             href="mailto:shashikira4124@gmail.com" 
             className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
           >
-            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition flex-shrink-0'>
+            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition shrink-0'>
               <Mail size={18} className='md:w-5 md:h-5' />
             </div>
             <div className='min-w-0'>
@@ -28,7 +28,7 @@ const ContactInfo = () => {
             href="#" 
             className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
           >
-            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition flex-shrink-0'>
+            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition shrink-0'>
               <Linkedin size={18} className='md:w-5 md:h-5' />
             </div>
             <div>
@@ -41,7 +41,7 @@ const ContactInfo = () => {
             href="#" 
             className='flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md hover:border-white/10 hover:bg-white/10 transition group' 
           >
-            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition flex-shrink-0'>
+            <div className='p-2 rounded-lg bg-white/10 group-hover:bg-white/20 transition shrink-0'>
               <Github size={18} className='md:w-5 md:h-5' />
             </div>
             <div>
@@ -54,7 +54,7 @@ const ContactInfo = () => {
 
       <div className='p-4 md:p-6 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md'>
         <div className='flex items-start gap-3'>
-          <MapPin size={18} className='mt-1 text-neutral-400 flex-shrink-0 md:w-5 md:h-5' />
+          <MapPin size={18} className='mt-1 text-neutral-400 shrink-0 md:w-5 md:h-5' />
           <div>
             <p className='font-medium mb-1 text-sm md:text-base'>Location</p>
             <p className='text-xs md:text-sm text-neutral-400'>Available for remote opportunities worldwide</p>
