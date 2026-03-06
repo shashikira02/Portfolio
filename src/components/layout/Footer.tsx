@@ -20,7 +20,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="text-sm text-neutral-200">
-          © {new Date().getFullYear()} Shashi Kiran. All rights reserved.
+          © {new Date().getFullYear()} Shashi Kiran.
         </p>
         <button onClick={copyEmail} className='text-sm text-neutral-200 hover:opacity-70 transition md:hidden'>
           {copied ? 'Copied!' : email}

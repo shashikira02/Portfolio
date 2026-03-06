@@ -16,7 +16,7 @@ const SocialSidebar = () => {
     return (
         <>
             {/* Left - Social Icons */}
-            <div className="fixed left-6 xl:left-12 bottom-0 hidden md:flex flex-col items-center gap-6 z-50">
+            <div className="fixed left-6 bottom-0 hidden md:flex flex-col items-center gap-6 z-50">
                 <a 
                     href="#" 
                     target="_blank" 
@@ -41,7 +41,7 @@ const SocialSidebar = () => {
             </div>
 
             {/* Right - Email */}
-            <div className='fixed right-6 xl:right-12 bottom-0 hidden md:flex flex-col items-center z-50'>
+            <div className='fixed right-6 bottom-0 hidden md:flex flex-col items-center z-50'>
                 <button 
                     onClick={copyEmail} 
                     className='[writing-mode:vertical-rl] text-sm tracking-widest hover:text-white/80 hover:-translate-y-1 transition-all duration-200 mb-6'
