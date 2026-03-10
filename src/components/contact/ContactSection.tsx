@@ -1,9 +1,9 @@
 import ContactForm from '@/components/contact/ContactForm';
-import ContactInfo from '../../components/contact/ContactInfo';
+import ContactInfo from '@/components/contact/ContactInfo';
 
 const ContactSection = () => {
   return (
-    <section id="contact" className='min-h-screen py-16 md:py-24 w-full px-4 sm:px-6 scroll-mt-16' >
+    <section id="contact" className='min-h-screen pt-16 md:pt-24 w-full scroll-mt-16' >
       <div className='max-w-6xl mx-auto space-y-8 md:space-y-12'>
         <div className='space-y-3 md:space-y-4'>
           <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight'>Get In Touch</h1>

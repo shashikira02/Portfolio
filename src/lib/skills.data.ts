@@ -18,6 +18,6 @@ export const skillsData: SkillGroup[] = [
   },
   {
     category: 'Other Tools',
-    skills: ['Redux', 'AWS', 'Git', 'Bootstrap', 'Figma', 'Material UI', 'Tailwind CSS'],
+    skills: ['Redux', 'REST API', 'AWS', 'Git', 'Bootstrap', 'Figma', 'Material UI', 'Tailwind CSS'],
   },
 ];

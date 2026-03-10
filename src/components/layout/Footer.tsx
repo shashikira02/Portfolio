@@ -2,7 +2,7 @@
 
 import { Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Footer = () => {
   const email = 'shashikira4124@gmail.com';
@@ -28,12 +28,26 @@ const Footer = () => {
 
         {/* Social Links */}
         <div className='flex items-center gap-6 md:hidden' >
-          <Link href="#" aria-label="GitHub" className='hover:opacity-70 transition' >
-            <Github size={20} />
-          </Link>
-          <Link href="#" aria-label="LinkedIn" className='hover:opacity-70 transition' >
+          <a
+            href="https://github.com/shashikira02"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:-translate-y-1 hover:text-white/80 transition-all duration-200"
+            aria-label="GitHub"
+          >
+            <Github />
+          </a>
+
+          <a
+            href="https://linkedin.com/in/shashikira02/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:-translate-y-1 hover:text-white/80 transition-all duration-200"
+            aria-label="LinkedIn"
+          >
             <Linkedin />
-          </Link>
+          </a>
+        
         </div>
 
       </div>

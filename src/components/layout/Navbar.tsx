@@ -3,13 +3,14 @@
 import { Home, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#hero' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#hero' },
+  { label: 'About', href: '/#about' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Contact', href: '/#contact' },
   { label: 'Resume', href: '#' },
 ];
 
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState('hero')
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -73,7 +75,16 @@ const Navbar = () => {
 
           <div className="flex items-center gap-3">
 
-            <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-wide hover:opacity-80 transition">
+            <Link 
+              href="/" 
+              onClick={(e) => {
+                if (pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0});
+                }
+              }}
+              className="flex items-center gap-2 text-lg font-semibold tracking-wide hover:opacity-80 transition"
+            >
               <Home />
               SK
             </Link>
@@ -84,11 +95,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center md:gap-7">
 
             {NAV_LINKS.map((link) => {
-              const section = link.href.replace('#', '');
+              const section = link.href.replace('/#', '').replace('#', '');
+              const isActive = pathname === '/' && activeSection === section;
               return <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 ${activeSection === section ? 'text-white underline underline-offset-4' : 'text-neutral-400 hover:text-white'} hover:opacity-70`}
+                className={`text-sm font-medium transition-colors duration-200 ${isActive ? 'text-white underline underline-offset-4' : 'text-neutral-400 hover:text-white'} hover:opacity-70`}
               >
                 {link.label}
               </Link>
@@ -114,7 +126,8 @@ const Navbar = () => {
       {isOpen && (
         <div id="mobile-menu" className="md:hidden w-[90%] mx-auto mt-4  flex flex-col gap-6 px-6 py-6 rounded-3xl border border-white/10  bg-white/5 backdrop-blur-md">
           {NAV_LINKS.map((link) => {
-            const section = link.href.replace('#', '');
+            const section = link.href.replace('/#', '').replace('#', '');
+            const isActive = pathname === '/' && activeSection === section;
             return (
               <Link
                 key={link.label}
@@ -122,7 +135,7 @@ const Navbar = () => {
                 onClick={() => {
                   setIsOpen(false)
                 }}
-                className={`text-sm font-medium transition-colors ${activeSection === section ? 'text-white underline underline-offset-4' : 'text-neutral-400 hover:text-white'} duration-200 hover:opacity-70 `}
+                className={`text-sm font-medium transition-colors ${isActive ? 'text-white underline underline-offset-4' : 'text-neutral-400 hover:text-white'} duration-200 hover:opacity-70 `}
               >
                 {link.label}
               </Link>

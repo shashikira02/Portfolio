@@ -12,7 +12,7 @@ const SocialLinks = () => {
           <Linkedin className="hover:opacity-70 transition" />LinkedIn
         </Link>
         <Link href='#' aria-label="Email" >
-          <Mail           className="hover:opacity-70 transition" />GMail
+          <Mail className="hover:opacity-70 transition" />GMail
         </Link>
 
       </div>
