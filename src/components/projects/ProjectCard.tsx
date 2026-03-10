@@ -9,7 +9,7 @@ type Props = {
 
 const ProjectCard = ({ project }: Props) => {
   return (
-    <div className="flex flex-col md:flex-row gap-10 items-center border border-white/5 rounded-2xl p-8 bg-white/5 backdrop-blur-md hover:border-white/10 transition-colors">
+    <div className="flex flex-col md:flex-row gap-10 items-center border border-border rounded-2xl p-8 bg-card/50 backdrop-blur-md hover:border-border/80 transition-colors">
       {/* Left side - Image */}
       {project.image && (
         <div className="flex-1 order-2 md:order-1">
@@ -27,12 +27,12 @@ const ProjectCard = ({ project }: Props) => {
       <div className="flex-1 space-y-4 order-1 md:order-2">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold">{project.name}</h2>
-          {project.date && <p className="text-sm text-neutral-400 mt-1">{project.date}</p>}
+          {project.date && <p className="text-sm text-muted-foreground mt-1">{project.date}</p>}
         </div>
-        <ul className="space-y-3 text-neutral-300">
+        <ul className="space-y-3 text-muted-foreground">
           {project.description.map((point, index) => (
             <li key={index} className="flex items-start gap-3 leading-relaxed">
-              <span className="text-white mt-1.5 text-xs">▹</span>
+              <span className="text-foreground mt-1.5 text-xs">▹</span>
               <span>{point}</span>
             </li>
           ))}
@@ -41,7 +41,7 @@ const ProjectCard = ({ project }: Props) => {
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1.5 text-xs font-medium bg-white/10 border border-white/10 rounded-full"
+              className="px-3 py-1.5 text-xs font-medium bg-card/50 border border-border rounded-full"
             >
               {tech}
             </span>
@@ -53,7 +53,7 @@ const ProjectCard = ({ project }: Props) => {
             <Link 
               target="_blank" 
               href={project.demoUrl}
-              className="px-4 py-2 bg-white text-black rounded-lg font-medium hover:opacity-90 transition text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition text-sm flex items-center gap-2"
             >
               <ExternalLink size={16} />
               View Demo
@@ -62,7 +62,7 @@ const ProjectCard = ({ project }: Props) => {
           <Link 
             target="_blank" 
             href={project.githubUrl}
-            className="px-4 py-2 border border-white/20 rounded-lg font-medium hover:bg-white/10 transition text-sm flex items-center gap-2"
+            className="px-4 py-2 border border-border rounded-lg font-medium hover:bg-accent transition text-sm flex items-center gap-2"
           >
             <Github size={16} />
             Github Repo

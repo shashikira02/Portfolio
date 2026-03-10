@@ -8,10 +8,10 @@ const SkillsSection = () => {
     <div className="space-y-8" >
       {skillsData.map((group) => (
         <div key={group.category}>
-          <h3 className="text-lg font-semibold text-neutral-300 mb-3">{group.category}</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-3">{group.category}</h3>
           <div className="flex flex-wrap gap-3">
             {group.skills.map((skill) => (
-              <span key={skill} className="px-4 py-2 text-sm bg-white/5 border border-white/10 rounded-full backdrop-blur-sm" >
+              <span key={skill} className="px-3 py-1.5 text-xs font-medium bg-card/50 border border-border rounded-full" >
                 {skill}
               </span>
             ))}

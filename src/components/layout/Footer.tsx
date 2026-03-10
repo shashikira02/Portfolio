@@ -15,14 +15,14 @@ const Footer = () => {
   }
 
   return (
-    <footer className="border-t border-white/5 mt-24">
+    <footer className="border-t border-border mt-24">
       <div className="w-full px-6 py-10 flex flex-col md:flex-row items-center justify-center gap-6">
 
         {/* Copyright */}
-        <p className="text-sm text-neutral-200">
+        <p className="text-sm dark:text-muted-foreground text-black">
           © {new Date().getFullYear()} Shashi Kiran.
         </p>
-        <button onClick={copyEmail} className='text-sm text-neutral-200 hover:opacity-70 transition md:hidden'>
+        <button onClick={copyEmail} className='text-sm text-muted-foreground hover:opacity-70 transition md:hidden'>
           {copied ? 'Copied!' : email}
         </button>
 
@@ -32,7 +32,7 @@ const Footer = () => {
             href="https://github.com/shashikira02"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:-translate-y-1 hover:text-white/80 transition-all duration-200"
+            className="hover:-translate-y-1 hover:text-foreground/80 transition-all duration-200"
             aria-label="GitHub"
           >
             <Github />
@@ -42,7 +42,7 @@ const Footer = () => {
             href="https://linkedin.com/in/shashikira02/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:-translate-y-1 hover:text-white/80 transition-all duration-200"
+            className="hover:-translate-y-1 hover:text-foreground/80 transition-all duration-200"
             aria-label="LinkedIn"
           >
             <Linkedin />

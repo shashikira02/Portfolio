@@ -7,7 +7,7 @@ const ProjectsPage = () => {
       <div className='max-w-6xl mx-auto space-y-12'>
         <div className='space-y-4 text-center'>
           <h1 className='text-4xl md:text-5xl font-bold tracking-tight'>All Projects</h1>
-          <p className='text-neutral-400 text-lg'>A complete collection of my work</p>
+          <p className='text-muted-foreground text-lg'>A complete collection of my work</p>
         </div>
         
         <div className='space-y-12 md:space-y-16'>

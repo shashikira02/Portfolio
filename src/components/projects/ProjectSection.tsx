@@ -22,7 +22,7 @@ const ProjectsSection = () => {
           <div className='flex justify-end pt-4'>
             <Link 
               href='/projects'
-              className='px-6 py-3 bg-white text-black rounded-lg font-medium hover:opacity-90 transition'
+              className='px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition'
             >
               More Projects
             </Link>

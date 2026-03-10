@@ -64,12 +64,12 @@ const ContactForm = () => {
     <div className="space-y-4 md:space-y-6">
       <div>
         <h2 className="text-xl md:text-2xl font-bold mb-2">Send a Message</h2>
-        <p className="text-neutral-400 text-xs md:text-sm">Fill out the form below and I&apos;ll get back to you as soon as possible.</p>
+        <p className="text-muted-foreground text-xs md:text-sm">Fill out the form below and I&apos;ll get back to you as soon as possible.</p>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 rounded-2xl shadow-lg"
+        className="space-y-4"
       >
         <div>
           <label htmlFor="name" className="block mb-2 text-xs md:text-sm font-medium">
@@ -82,7 +82,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="Your name"
             required
-            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition placeholder:text-neutral-500"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-card/50 border border-border focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition placeholder:text-muted-foreground"
           />
         </div>
 
@@ -97,7 +97,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="your email"
             required
-            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition placeholder:text-neutral-500"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-card/50 border border-border focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition placeholder:text-muted-foreground"
           />
         </div>
 
@@ -112,14 +112,14 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="Your message here..."
             required
-            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition resize-none placeholder:text-neutral-500"
+            className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-lg bg-card/50 border border-border focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition resize-none placeholder:text-muted-foreground"
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2.5 md:py-3 text-sm md:text-base rounded-lg bg-white text-black font-semibold hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg"
+          className="w-full py-2.5 md:py-3 text-sm md:text-base rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg"
         >
           {loading? "Sending...":"Send Message"}
         </button>
@@ -132,8 +132,8 @@ const ContactForm = () => {
 
 
          {status === "error" && (
-          <p className='text-red-500'>
-            Something went wrong. Try again.
+          <p className='text-red-500 text-sm'>
+            Failed to send message. Please try again later.
           </p>
         )}
       </form>

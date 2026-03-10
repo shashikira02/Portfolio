@@ -1,9 +1,10 @@
 'use client';
 
-import { Home, Menu, X } from 'lucide-react';
+import { Home, Menu, Moon, Sun, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/#hero' },
@@ -19,6 +20,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('hero')
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -71,16 +73,16 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 w-full z-50">
       <nav className="w-[90%] md:w-[70%] lg:w-[60%] mx-auto mt-6" ref={menuRef}>
 
-        <div className="flex items-center justify-between px-6 py-3 rounded-full border border-white/5 bg-white/5 backdrop-blur-md">
+        <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border bg-card/50 backdrop-blur-md">
 
           <div className="flex items-center gap-3">
 
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               onClick={(e) => {
                 if (pathname === '/') {
                   e.preventDefault();
-                  window.scrollTo({ top: 0});
+                  window.scrollTo({ top: 0 });
                 }
               }}
               className="flex items-center gap-2 text-lg font-semibold tracking-wide hover:opacity-80 transition"
@@ -100,23 +102,31 @@ const Navbar = () => {
               return <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 ${isActive ? 'text-white underline underline-offset-4' : 'text-neutral-400 hover:text-white'} hover:opacity-70`}
+                className={`text-sm font-medium transition-colors duration-200 ${isActive ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground hover:text-foreground'} hover:opacity-70`}
               >
                 {link.label}
               </Link>
             })}
+            <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className='p-2 rounded-full hover:bg-accent transition' >
+              {theme === 'dark' ? <Sun /> : <Moon />}
+            </button>
           </div>
 
-          {/* Mobile Menu Button*/}
-          <button
-            className="md:hidden"
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-          >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* Mobile Menu Button and Theme Toggle*/}
+          <div className='flex items-center gap-3'>
+            <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className='p-2 rounded-full hover:bg-accent transition md:hidden' >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              className="md:hidden"
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
 
         </div>
 
@@ -124,7 +134,7 @@ const Navbar = () => {
 
       {/* Mobile Menu*/}
       {isOpen && (
-        <div id="mobile-menu" className="md:hidden w-[90%] mx-auto mt-4  flex flex-col gap-6 px-6 py-6 rounded-3xl border border-white/10  bg-white/5 backdrop-blur-md">
+        <div id="mobile-menu" className="md:hidden w-[90%] mx-auto mt-4  flex flex-col gap-6 px-6 py-6 rounded-3xl border border-border bg-card/50 backdrop-blur-md">
           {NAV_LINKS.map((link) => {
             const section = link.href.replace('/#', '').replace('#', '');
             const isActive = pathname === '/' && activeSection === section;
@@ -135,7 +145,7 @@ const Navbar = () => {
                 onClick={() => {
                   setIsOpen(false)
                 }}
-                className={`text-sm font-medium transition-colors ${isActive ? 'text-white underline underline-offset-4' : 'text-neutral-400 hover:text-white'} duration-200 hover:opacity-70 `}
+                className={`text-sm font-medium transition-colors ${isActive ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground hover:text-foreground'} duration-200 hover:opacity-70 `}
               >
                 {link.label}
               </Link>
