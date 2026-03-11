@@ -1,18 +1,24 @@
 'use client'
 
 import { Github, Linkedin } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { usePostHog } from 'posthog-js/react';
 
 const Footer = () => {
+  const posthog = usePostHog();
   const email = 'shashikira4124@gmail.com';
   const [copied, setCopied] = useState(false);
 
-  const copyEmail = async () => {
+  const copyEmail = useCallback(async () => {
     await navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
-  }
+    
+    posthog?.capture('email_copied', {
+      email: email,
+      location: 'footer',
+    });
+  }, [posthog, email]);
 
   return (
     <footer className="border-t border-border mt-24">
@@ -32,6 +38,13 @@ const Footer = () => {
             href="https://github.com/shashikira02"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              posthog?.capture('social_link_clicked', {
+                platform: 'github',
+                url: 'https://github.com/shashikira02',
+                location: 'footer',
+              });
+            }}
             className="hover:-translate-y-1 hover:text-foreground/80 transition-all duration-200"
             aria-label="GitHub"
           >
@@ -42,6 +55,13 @@ const Footer = () => {
             href="https://linkedin.com/in/shashikira02/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              posthog?.capture('social_link_clicked', {
+                platform: 'linkedin',
+                url: 'https://linkedin.com/in/shashikira02/',
+                location: 'footer',
+              });
+            }}
             className="hover:-translate-y-1 hover:text-foreground/80 transition-all duration-200"
             aria-label="LinkedIn"
           >

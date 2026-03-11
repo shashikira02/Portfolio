@@ -1,8 +1,12 @@
+'use client';
+
 import ProjectCard from '@/components/projects/ProjectCard';
 import { projects } from '@/lib/projets.data';
 import Link from 'next/link';
+import { usePostHog } from 'posthog-js/react';
 
 const ProjectsSection = () => {
+  const posthog = usePostHog();
   const featuredProjects = projects.slice(0, 3);
 
   return (
@@ -22,6 +26,13 @@ const ProjectsSection = () => {
           <div className='flex justify-end pt-4'>
             <Link 
               href='/projects'
+              onClick={() => {
+                posthog?.capture('more_projects_clicked', {
+                  from_section: 'projects',
+                  total_projects: projects.length,
+                  featured_count: featuredProjects.length,
+                });
+              }}
               className='px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition'
             >
               More Projects

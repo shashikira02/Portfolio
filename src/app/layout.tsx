@@ -5,10 +5,15 @@ import BackgroundParticles from '@/components/layout/BackgroundParticles';
 import Footer from '@/components/layout/Footer';
 import SocialSidebar from '@/components/layout/SocialSidebar';
 import Providers from '@/components/theme-provider';
+import { PHProvider } from '@/components/posthog-provider';
+import { PostHogPageView } from '@/components/posthog-pageview';
 
 export const metadata: Metadata = {
   title: 'Shashi Kiran | Portfolio',
   description: 'Fullstack Developer Portfolio build with Next.js',
+  icons: {
+    icon: '/logo.ico'
+  },
 };
 
 export default function RootLayout({
@@ -18,17 +23,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='relative overflow-x-hidden ' >
-        <Providers >
-          <BackgroundParticles />
-          <Navbar />
-          <SocialSidebar />
-          <main className="w-[90%] md:w-[70%] lg:w-[60%] mx-auto pt-24">
-            {children}
-          </main>
-          <Footer />
-        </Providers>
-      </body>
+      <PHProvider>
+        <body className='relative overflow-x-hidden ' >
+          <Providers >
+            <PostHogPageView />
+            <BackgroundParticles />
+            <Navbar />
+            <SocialSidebar />
+            <main className="w-[90%] md:w-[70%] lg:w-[60%] mx-auto pt-24">
+              {children}
+            </main>
+            <Footer />
+          </Providers>
+        </body>
+      </PHProvider>
     </html>
   );
 }

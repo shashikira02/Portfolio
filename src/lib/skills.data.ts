@@ -6,7 +6,16 @@ export type SkillGroup = {
 export const skillsData: SkillGroup[] = [
   {
     category: 'Languages',
-    skills: ['C', 'C++', 'JavaScript', 'TypeScript', 'Python', 'Java', 'HTML', 'CSS'],
+    skills: [
+      'C',
+      'C++',
+      'JavaScript',
+      'TypeScript',
+      'Python',
+      'Java',
+      'HTML',
+      'CSS',
+    ],
   },
   {
     category: 'Database',
@@ -14,10 +23,19 @@ export const skillsData: SkillGroup[] = [
   },
   {
     category: 'Technologies',
-    skills: ['Node.js', 'React', 'Express.js'],
+    skills: ['Node.js', 'Express.js', 'React', 'Next.js'],
   },
   {
     category: 'Other Tools',
-    skills: ['Redux', 'REST API', 'AWS', 'Git', 'Bootstrap', 'Figma', 'Material UI', 'Tailwind CSS'],
+    skills: [
+      'Redux',
+      'REST API',
+      'AWS',
+      'Git',
+      'Bootstrap',
+      'Figma',
+      'Material UI',
+      'Tailwind CSS',
+    ],
   },
 ];
