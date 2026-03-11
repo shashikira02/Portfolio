@@ -1,17 +1,24 @@
 'use client'
 
 import { Check, Github, Linkedin } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { usePostHog } from 'posthog-js/react';
 
 const SocialSidebar = () => {
+    const posthog = usePostHog();
     const email = 'shashikira4124@gmail.com';
     const [copied, setCopied] = useState(false);
 
-    const copyEmail = async () => {
+    const copyEmail = useCallback(async () => {
         await navigator.clipboard.writeText(email);
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);
-    }
+        
+        posthog?.capture('email_copied', {
+            email: email,
+            location: 'sidebar',
+        });
+    }, [posthog, email]);
 
     return (
         <>
@@ -21,6 +28,13 @@ const SocialSidebar = () => {
                     href="https://github.com/shashikira02"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                        posthog?.capture('social_link_clicked', {
+                            platform: 'github',
+                            url: 'https://github.com/shashikira02',
+                            location: 'sidebar',
+                        });
+                    }}
                     className="hover:-translate-y-1 dark:hover:text-foreground/80 hover:text-black/80 transition-all duration-200"
                     aria-label="GitHub"
                 >
@@ -31,6 +45,13 @@ const SocialSidebar = () => {
                     href="https://linkedin.com/in/shashikira02/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                        posthog?.capture('social_link_clicked', {
+                            platform: 'linkedin',
+                            url: 'https://linkedin.com/in/shashikira02/',
+                            location: 'sidebar',
+                        });
+                    }}
                     className="hover:-translate-y-1 dark:hover:text-foreground/80 hover:text-black/80 transition-all duration-200"
                     aria-label="LinkedIn"
                 >

@@ -4,35 +4,54 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const requests = new Map<string, number>();
+const requests = new Map<string, { count: number; timestamp: number }>();
+const RATE_LIMIT_WINDOW = 60000; 
+const MAX_REQUESTS = 3;
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
+function cleanupOldRequests() {
+  const now = Date.now();
+  for (const [ip, data] of requests.entries()) {
+    if (now - data.timestamp > RATE_LIMIT_WINDOW) {
+      requests.delete(ip);
+    }
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const ip =
-      req.headers.get('x-forwarded-for') ||
+      req.headers.get('x-forwarded-for')?.split(',')[0] ||
       req.headers.get('x-real-ip') ||
       'unknown';
 
     const userAgent = req.headers.get('user-agent') || 'unknown';
-
     const now = Date.now();
-    const lastRequest = requests.get(ip);
 
-    // limit 1 request for every 15 seconds
-    if (lastRequest && now - lastRequest < 15000) {
-      return NextResponse.json(
-        {
-          error: `Too many requests. try again later after ${now - lastRequest}/1000 seconds later.`,
-        },
-        { status: 429 },
-      );
+    cleanupOldRequests();
+
+    const requestData = requests.get(ip);
+
+    if (requestData) {
+      if (now - requestData.timestamp < RATE_LIMIT_WINDOW) {
+        if (requestData.count >= MAX_REQUESTS) {
+          return NextResponse.json(
+            {
+              error: 'Too many requests. Please try again later.',
+            },
+            { status: 429 },
+          );
+        }
+        requestData.count++;
+      } else {
+        requests.set(ip, { count: 1, timestamp: now });
+      }
+    } else {
+      requests.set(ip, { count: 1, timestamp: now });
     }
-
-    requests.set(ip, now);
 
     const { name, email, message } = await req.json();
 

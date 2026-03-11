@@ -1,13 +1,35 @@
+'use client';
+
 import { Project } from '@/lib/projets.data';
 import { ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePostHog } from 'posthog-js/react';
+import { memo, useCallback } from 'react';
 
 type Props = {
   project: Project;
 };
 
-const ProjectCard = ({ project }: Props) => {
+const ProjectCard = memo(({ project }: Props) => {
+  const posthog = usePostHog();
+
+  const handleDemoClick = useCallback(() => {
+    posthog?.capture('project_demo_clicked', {
+      project_name: project.name,
+      project_url: project.demoUrl,
+      technologies: project.technologies,
+    });
+  }, [posthog, project.name, project.demoUrl, project.technologies]);
+
+  const handleGithubClick = useCallback(() => {
+    posthog?.capture('project_github_clicked', {
+      project_name: project.name,
+      github_url: project.githubUrl,
+      technologies: project.technologies,
+    });
+  }, [posthog, project.name, project.githubUrl, project.technologies]);
+
   return (
     <div className="flex flex-col md:flex-row gap-10 items-center border border-border rounded-2xl p-8 bg-card/50 backdrop-blur-md hover:border-border/80 transition-colors">
       {/* Left side - Image */}
@@ -53,6 +75,7 @@ const ProjectCard = ({ project }: Props) => {
             <Link 
               target="_blank" 
               href={project.demoUrl}
+              onClick={handleDemoClick}
               className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition text-sm flex items-center gap-2"
             >
               <ExternalLink size={16} />
@@ -62,6 +85,7 @@ const ProjectCard = ({ project }: Props) => {
           <Link 
             target="_blank" 
             href={project.githubUrl}
+            onClick={handleGithubClick}
             className="px-4 py-2 border border-border rounded-lg font-medium hover:bg-accent transition text-sm flex items-center gap-2"
           >
             <Github size={16} />
@@ -71,6 +95,8 @@ const ProjectCard = ({ project }: Props) => {
       </div>
     </div>
   );
-};
+});
+
+ProjectCard.displayName = 'ProjectCard';
 
 export default ProjectCard;

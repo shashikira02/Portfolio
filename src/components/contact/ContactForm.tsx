@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { usePostHog } from 'posthog-js/react';
 
 const ContactForm = () => {
+  const posthog = usePostHog();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,20 +15,29 @@ const ContactForm = () => {
     (false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleChange = (
+  const handleChange = useCallback((
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+
+    posthog?.capture('contact_form_field_changed', {
+      field: e.target.name,
+      hasValue: e.target.value.length > 0,
     });
-  };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // console.log('Form Submitted', formData);
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  }, [posthog]);
 
-    // alert('Form submitted Successdully!');
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    posthog?.capture('contact_form_submitted', {
+      hasName: formData.name.length > 0,
+      hasEmail: formData.email.length > 0,
+      messageLength: formData.message.length,
+    });
 
     setLoading(true);
     setStatus('idle');
@@ -46,6 +57,10 @@ const ContactForm = () => {
 
       setStatus('success');
 
+      posthog?.capture('contact_form_success', {
+        messageLength: formData.message.length,
+      });
+
       setFormData({
         name: "",
         email:"",
@@ -54,11 +69,15 @@ const ContactForm = () => {
 
     } catch {
       setStatus("error");
+      
+      posthog?.capture('contact_form_error', {
+        messageLength: formData.message.length,
+      });
     }
 
     setLoading(false);
 
-  };
+  }, [posthog]);
 
   return (
     <div className="space-y-4 md:space-y-6">

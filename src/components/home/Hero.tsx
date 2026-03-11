@@ -1,8 +1,11 @@
 'use client'
 
 import Image from "next/image"
+import { usePostHog } from 'posthog-js/react';
 
 const Hero = () => {
+  const posthog = usePostHog();
+
   return (
     <section id='hero' className="min-h-[80vh] flex items-center" >
       <div className="grid md:grid-cols-2 gap-10 items-center w-full">
@@ -19,11 +22,29 @@ const Hero = () => {
             Full-Stack Developer focused on building scalable, performant web application with modern technologies.
           </p>
           <div className="flex gap-4 pt-4 justify-center md:justify-start" >
-            <a href="#projects" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition" >
+            <a 
+              href="#projects" 
+              onClick={() => {
+                posthog?.capture('hero_cta_clicked', {
+                  button: 'view_projects',
+                  destination: '#projects',
+                });
+              }}
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition"
+            >
               View Projects
             </a>
 
-            <a href="#contact" className="px-6 py-3 border border-border rounded-lg font-medium hover:bg-accent transition" >
+            <a 
+              href="#contact" 
+              onClick={() => {
+                posthog?.capture('hero_cta_clicked', {
+                  button: 'get_in_touch',
+                  destination: '#contact',
+                });
+              }}
+              className="px-6 py-3 border border-border rounded-lg font-medium hover:bg-accent transition"
+            >
               Get In Touch
             </a>
           </div>

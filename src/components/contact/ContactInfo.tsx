@@ -1,7 +1,12 @@
+'use client';
+
 import { Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { usePostHog } from 'posthog-js/react';
 
 const ContactInfo = () => {
+  const posthog = usePostHog();
+
   return (
     <div className='space-y-6 md:space-y-8' >
       <div className='space-y-4 md:space-y-6'>
@@ -13,6 +18,12 @@ const ContactInfo = () => {
         <div className='space-y-3 md:space-y-4 mt-4'>
           <Link
             href="mailto:shashikira4124@gmail.com"
+            onClick={() => {
+              posthog?.capture('email_link_clicked', {
+                email: 'shashikira4124@gmail.com',
+                location: 'contact_info',
+              });
+            }}
             className='flex items-center gap-3 md:gap-4 transition group'
           >
             <div className='p-2 rounded-lg bg-card/50 group-hover:bg-accent transition shrink-0'>
